@@ -20,7 +20,6 @@
 
 #import "VCBtsaiWebView.h"
 
-#import <Crashlytics/Crashlytics.h>
 
 //  ［账号+密码] + [登录]
 enum
@@ -224,12 +223,6 @@ enum
         }
         id account_data_list = [account_data_hash allValues];
         //  TODO:一个私钥关联多个账号
-        if ([account_data_list count] >= 2){
-            NSString* name_join_strings = [[account_data_list ruby_map:(^id(id src) {
-                return [src objectForKey:@"name"];
-            })] componentsJoinedByString:@","];
-            CLS_LOG(@"ONE KEY %@ ACCOUNTS: %@", @([account_data_list count]), name_join_strings);
-        }
         //  默认选择第一个账号
         id account_data = [account_data_list firstObject];
         return [[chainMgr queryFullAccountInfo:account_data[@"id"]] then:(^id(id full_data) {
@@ -302,8 +295,6 @@ enum
                 assert(unlockInfos &&
                        [[unlockInfos objectForKey:@"unlockSuccess"] boolValue] &&
                        [[unlockInfos objectForKey:@"haveActivePermission"] boolValue]);
-                //  [统计]
-                [OrgUtils logEvents:@"loginEvent" params:@{@"mode":@(kwmPrivateKeyWithWallet), @"desc":@"privatekey"}];
                 
                 //  返回
                 [_owner.myNavigationController tempDisableDragBack];
@@ -482,8 +473,6 @@ enum
     switch (button.tag) {
         case kVcSubUserActivePrivateKey:
         {
-            //  [统计]
-            [OrgUtils logEvents:@"qa_tip_click" params:@{@"qa":@"qa_active_privatekey"}];
             VCBtsaiWebView* vc = [[VCBtsaiWebView alloc] initWithUrl:@"http://btspp.io/qam.html#qa_active_privatekey"];
             vc.title = NSLocalizedString(@"kVcTitleWhatIsActivePrivateKey", @"什么是资金私钥？");
             [_owner pushViewController:vc vctitle:nil backtitle:kVcDefaultBackTitleName];
@@ -491,8 +480,6 @@ enum
             break;
         case kVcSubUserTradingPassword:
         {
-            //  [统计]
-            [OrgUtils logEvents:@"qa_tip_click" params:@{@"qa":@"qa_trading_password"}];
             VCBtsaiWebView* vc = [[VCBtsaiWebView alloc] initWithUrl:@"http://btspp.io/qam.html#qa_trading_password"];
             vc.title = NSLocalizedString(@"kVcTitleWhatIsTradePassowrd", @"什么是交易密码？");
             [_owner pushViewController:vc vctitle:nil backtitle:kVcDefaultBackTitleName];

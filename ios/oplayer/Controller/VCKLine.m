@@ -155,15 +155,11 @@ enum
         [pAppCache remove_fav_markets:quote_symbol base:base_symbol];
         sender.tintColor = [ThemeManager sharedThemeManager].textColorGray;
         [OrgUtils makeToast:NSLocalizedString(@"kTipsAddFavDelete", @"删除自选成功")];
-        //  [统计]
-        [OrgUtils logEvents:@"event_market_remove_fav" params:@{@"base":base_symbol, @"quote":quote_symbol}];
     }else{
         //  添加自选、高亮五星、提示信息
         [pAppCache set_fav_markets:quote_symbol base:base_symbol];
         sender.tintColor = [ThemeManager sharedThemeManager].textColorHighlight;
         [OrgUtils makeToast:NSLocalizedString(@"kTipsAddFavSuccess", @"添加自选成功")];
-        //  [统计]
-        [OrgUtils logEvents:@"event_market_add_fav" params:@{@"base":base_symbol, @"quote":quote_symbol}];
     }
     [pAppCache saveFavMarketsToFile];
     

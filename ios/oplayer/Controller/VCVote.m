@@ -244,22 +244,16 @@ enum
                  [self hideBlockView];
                  [self _refresh_ui:vote_info];
                  [OrgUtils makeToast:[NSString stringWithFormat:NSLocalizedString(@"kVcVoteTipTxFullOK", @"%@成功。"), title]];
-                 //  [统计]
-                 [OrgUtils logEvents:@"txVotingFullOK" params:@{@"account":account_id}];
                  return nil;
              })] catch:(^id(id error) {
                  [self hideBlockView];
                  [OrgUtils makeToast:[NSString stringWithFormat:NSLocalizedString(@"kVcVoteTipTxOK", @"%@成功，但刷新界面失败，请稍后再试。"), title]];
-                 //  [统计]
-                 [OrgUtils logEvents:@"txVotingOK" params:@{@"account":account_id}];
                  return nil;
              })];
              return nil;
          })] catch:(^id(id error) {
              [self hideBlockView];
              [OrgUtils showGrapheneError:error];
-             //  [统计]
-             [OrgUtils logEvents:@"txVotingFailed" params:@{@"account":account_id}];
              return nil;
          })];
      }];
@@ -1034,40 +1028,30 @@ enum
     switch (sender.tag) {
         case kSecTypeCommitteeActive:
         {
-            //  [统计]
-            [OrgUtils logEvents:@"qa_tip_click" params:@{@"qa":@"qa_committee"}];
             url = @"http://btspp.io/qam.html#qa_committee";
             title = NSLocalizedString(@"kVcVoteWhatIsActiveCommittee", @"什么是活跃理事会？");
         }
             break;
         case kSecTypeCommitteeCandidate:
         {
-            //  [统计]
-            [OrgUtils logEvents:@"qa_tip_click" params:@{@"qa":@"qa_committee_c"}];
             url = @"http://btspp.io/qam.html#qa_committee_c";
             title = NSLocalizedString(@"kVcVoteWhatIsStandbyCommittee", @"什么是候选理事会？");
         }
             break;
         case kSecTypeWitnessActive:
         {
-            //  [统计]
-            [OrgUtils logEvents:@"qa_tip_click" params:@{@"qa":@"qa_witness"}];
             url = @"http://btspp.io/qam.html#qa_witness";
             title = NSLocalizedString(@"kVcVoteWhatIsActiveWitness", @"什么是活跃见证人？");
         }
             break;
         case kSecTypeWitnessCandidate:
         {
-            //  [统计]
-            [OrgUtils logEvents:@"qa_tip_click" params:@{@"qa":@"qa_witness_c"}];
             url = @"http://btspp.io/qam.html#qa_witness_c";
             title = NSLocalizedString(@"kVcVoteWhatIsStandbyWitness", @"什么是候选见证人？");
         }
             break;
         case kBtnTagProxyHelp:
         {
-            //  [统计]
-            [OrgUtils logEvents:@"qa_tip_click" params:@{@"qa":@"qa_proxy"}];
             url = @"http://btspp.io/qam.html#qa_proxy";
             title = NSLocalizedString(@"kVcVoteWhatIsProxy", @"什么是代理人？");
         }

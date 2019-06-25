@@ -328,22 +328,16 @@ enum
                  // 刷新界面
                  [self _refresh_ui];
                  [OrgUtils makeToast:NSLocalizedString(@"kAccountUpgradeMemberSubmitTxFullOK", @"升级终身会员成功。")];
-                 //  [统计]
-                 [OrgUtils logEvents:@"txUpgradeToLifetimeMemberFullOK" params:@{@"account":account_id}];
                  return nil;
              })] catch:(^id(id error) {
                  [self hideBlockView];
                  [OrgUtils makeToast:NSLocalizedString(@"kAccountUpgradeMemberSubmitTxOK", @"升级终身会员成功，但刷新界面失败，请稍后再试。")];
-                 //  [统计]
-                 [OrgUtils logEvents:@"txUpgradeToLifetimeMemberOK" params:@{@"account":account_id}];
                  return nil;
              })];
              return nil;
          })] catch:(^id(id error) {
              [_owner hideBlockView];
              [OrgUtils showGrapheneError:error];
-             //  [统计]
-             [OrgUtils logEvents:@"txUpgradeToLifetimeMemberFailed" params:@{@"account":account_id}];
              return nil;
          })];
      }];

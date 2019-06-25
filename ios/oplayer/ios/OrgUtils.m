@@ -17,7 +17,6 @@
 #import "SettingManager.h"
 #import "VCBase.h"
 
-#import "Crashlytics/Crashlytics.h"
 #import "unzip.h"
 #include "zlib.h"
 
@@ -29,8 +28,6 @@
 #import <arpa/inet.h>
 
 #import <AVFoundation/AVFoundation.h>
-
-#import <Flurry/Flurry.h>
 
 #define CHUNK_SIZE 1024
 
@@ -82,15 +79,6 @@ NSString* gSmallDataDecode(NSString* str, NSString* key)
 }
 
 @implementation OrgUtils
-
-/**
- *  日志统计
- */
-+ (void)logEvents:(NSString*)eventname params:(NSDictionary*)params
-{
-    [Answers logCustomEventWithName:eventname customAttributes:params];
-    [Flurry logEvent:eventname withParameters:params];
-}
 
 /**
  *  示石墨烯网络错误信息（部分错误特殊处理）
@@ -2938,7 +2926,7 @@ NSString* gSmallDataDecode(NSString* str, NSString* key)
     NSDate* date = [dateFormat dateFromString:datestring];
     if (!date){
         //  DEBUG
-        CLS_LOG(@"dateFromString date is nil, datestring is: %@", datestring);
+        DLog(@"dateFromString date is nil, datestring is: %@", datestring);
     }
     
 //    [dateFormat release];

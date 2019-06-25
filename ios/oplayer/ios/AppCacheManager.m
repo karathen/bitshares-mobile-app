@@ -15,7 +15,6 @@
 #import "WalletManager.h"
 
 #import "Extension.h"
-#import <Crashlytics/Crashlytics.h>
 
 static AppCacheManager* _spInstanceAppCacheMgr = nil;
 
@@ -487,14 +486,8 @@ static AppCacheManager* _spInstanceAppCacheMgr = nil;
         [dateFormat setDateFormat:@"yyyyMMdd"];
         id prefix = [dateFormat stringFromDate:[NSDate date]];
         filename = [NSString stringWithFormat:@"%@_%@.bin", prefix, final_wallet_name];
-        //  [统计]
-        [OrgUtils logEvents:@"action_backupwallet"
-                       params:@{@"prefix":prefix, @"account":final_wallet_name}];
     }else{
         filename = [NSString stringWithFormat:@"%@.bin", final_wallet_name];
-        //  [统计]
-        [OrgUtils logEvents:@"action_backupwallet"
-                       params:@{@"account":final_wallet_name}];
     }
     id fullpath = [dir stringByAppendingPathComponent:filename];
     return [OrgUtils writeFileAny:wallet_bin withFullPath:fullpath withDirPath:nil];

@@ -17,7 +17,6 @@
 #import "OrgUtils.h"
 #import "UIDevice+Helper.h"
 
-#import "Crashlytics/Crashlytics.h"
 
 static NSInteger __s_notify_unique_id = 0;  //  REMAKR：计数器（所有模态vc显示次数，每显示1次加。）
 
@@ -115,9 +114,7 @@ static NSInteger gen_notify_unique_id()
 {
     [super viewDidLoad];
     NSString *className = [NSString stringWithUTF8String:object_getClassName(self)];
-    CLS_LOG(@"viewDidLoad: %@", className);
-    //  [统计]
-    [OrgUtils logEvents:@"viewDidLoad" params:@{@"view":className}];
+    DLog(@"viewDidLoad: %@", className);
     
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
@@ -126,7 +123,7 @@ static NSInteger gen_notify_unique_id()
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    CLS_LOG(@"viewDidDisappear: %@", [NSString stringWithUTF8String:object_getClassName(self)]);
+    DLog(@"viewDidDisappear: %@", [NSString stringWithUTF8String:object_getClassName(self)]);
     [super viewDidDisappear:animated];
 }
 
@@ -386,7 +383,7 @@ static NSInteger gen_notify_unique_id()
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    CLS_LOG(@"viewDidAppear: %@", [NSString stringWithUTF8String:object_getClassName(self)]);
+    DLog(@"viewDidAppear: %@", [NSString stringWithUTF8String:object_getClassName(self)]);
     [super viewDidAppear:animated];
     //  REMARK: 在push完毕后清除堆栈
     id pushClearVc = [TempManager sharedTempManager].clearNavbarStackOnVcPushCompleted;
@@ -725,14 +722,10 @@ static NSInteger gen_notify_unique_id()
         }else{
             [OrgUtils makeToast:NSLocalizedString(@"kProposalSubmitTipTxOK", @"创建提案成功。")];
         }
-        //  [统计]
-        [OrgUtils logEvents:@"txProposalCreateOK" params:@{@"opcode":@(opcode), @"account":fee_paying_account_id}];
         return nil;
     })] catch:(^id(id error) {
         [self hideBlockView];
         [OrgUtils showGrapheneError:error];
-        //  [统计]
-        [OrgUtils logEvents:@"txProposalCreateFailed" params:@{@"opcode":@(opcode), @"account":fee_paying_account_id}];
         return nil;
     })];
 }

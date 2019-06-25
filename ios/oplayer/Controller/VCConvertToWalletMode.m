@@ -12,8 +12,6 @@
 #import "WalletManager.h"
 #import "OrgUtils.h"
 
-#import <Crashlytics/Crashlytics.h>
-
 @interface VCConvertToWalletMode ()
 {
     BtsppCloseCallback      _callback;
@@ -236,9 +234,6 @@
     assert(unlockInfos &&
            [[unlockInfos objectForKey:@"unlockSuccess"] boolValue] &&
            [[unlockInfos objectForKey:@"haveActivePermission"] boolValue]);
-    
-    //  [统计]
-    [OrgUtils logEvents:@"convertEvent" params:@{@"mode":@(kwmPasswordWithWallet), @"desc":@"password+wallet"}];
     
     //  转换成功 - 关闭界面
     [self.myNavigationController tempDisableDragBack];

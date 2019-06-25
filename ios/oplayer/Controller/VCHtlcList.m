@@ -564,16 +564,12 @@ enum
          [[[[BitsharesClientManager sharedBitsharesClientManager] htlcRedeem:op] then:(^id(id transaction_confirmation) {
              [_owner hideBlockView];
              [OrgUtils makeToast:[NSString stringWithFormat:NSLocalizedString(@"kVcHtlcListTipsRedeemOK", @"HTLC合约 %@ 提取成功。"), htlc_id]];
-             //  [统计]
-             [OrgUtils logEvents:@"txHtlcRedeemFullOK" params:@{@"redeemer":account_id, @"htlc_id":htlc_id}];
              //  刷新
              [self queryUserHTLCs];
              return nil;
          })] catch:(^id(id error) {
              [_owner hideBlockView];
              [OrgUtils showGrapheneError:error];
-             //  [统计]
-             [OrgUtils logEvents:@"txHtlcRedeemFailed" params:@{@"redeemer":account_id, @"htlc_id":htlc_id}];
              return nil;
          })];
      }];
@@ -633,16 +629,12 @@ enum
          [[[[BitsharesClientManager sharedBitsharesClientManager] htlcExtend:op] then:(^id(id transaction_confirmation) {
              [_owner hideBlockView];
              [OrgUtils makeToast:[NSString stringWithFormat:NSLocalizedString(@"kVcHtlcListTipsExtendOK", @"HTLC合约 %@ 延长有效期成功。"), htlc_id]];
-             //  [统计]
-             [OrgUtils logEvents:@"txHtlcExtendFullOK" params:@{@"update_issuer":account_id, @"htlc_id":htlc_id}];
              //  刷新
              [self queryUserHTLCs];
              return nil;
          })] catch:(^id(id error) {
              [_owner hideBlockView];
              [OrgUtils showGrapheneError:error];
-             //  [统计]
-             [OrgUtils logEvents:@"txHtlcExtendFailed" params:@{@"update_issuer":account_id, @"htlc_id":htlc_id}];
              return nil;
          })];
      }];

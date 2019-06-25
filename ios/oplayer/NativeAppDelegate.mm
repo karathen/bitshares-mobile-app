@@ -28,15 +28,14 @@
 #include <sys/sysctl.h>
 #import <sys/utsname.h>
 
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
-
 //  for hook test
 #import <objc/objc.h>
 #import <objc/runtime.h>
 
 #import "GrapheneSerializer.h"
-#import <Flurry/Flurry.h>
+#import <Bugly/Bugly.h>
+#import "BaiduMobStat.h"
+
 
 @interface NativeAppDelegate()
 {
@@ -169,8 +168,8 @@
  */
 +(NSString*)deviceUniqueID
 {
-    NSString* service = @"com.btsplusplus.fowallet.app";
-    NSString* account = @"com.btsplusplus.fowallet.uniqueid";
+    NSString* service = @"com.seal.kdex.app";
+    NSString* account = @"com.seal.kdex.uniqueid";
     
     NSString* pUniqueID_password = [SAMKeychain passwordForService:service account:account];
     if (!pUniqueID_password)
@@ -224,9 +223,6 @@
     MyNavigationController* vcNav = [[MyNavigationController alloc] initWithRootViewController:vc];
     [self setupNavigationAttribute:vcNav];
     
-//    //  REMARK：统计navibar vc
-//    [Flurry logAllPageViewsForTarget:vcNav];
-    
     return vcNav;
 }
 
@@ -237,9 +233,6 @@
 {
     MyNavigationController* vcNav = [[MyNavigationController alloc] initWithRootViewController:vc];
     [self setupNavigationAttribute:vcNav];
-    
-//    //  REMARK：统计navibar vc
-//    [Flurry logAllPageViewsForTarget:vcNav];
     
     return vcNav;
 }
@@ -466,12 +459,6 @@
     return self.alertViewWindow.rootViewController;
 }
 
-void uncaughtExceptionHandler(NSException *exception)
-{
-    //  [统计]
-    [OrgUtils logEvents:@"crash" params:@{@"name":exception.name, @"reason":exception.reason}];
-}
-
 - (void)initLanguageInfo
 {
     self.currLanguage = [[self class] getSystemLanguage];
@@ -482,29 +469,15 @@ void uncaughtExceptionHandler(NSException *exception)
 #pragma mark- application delegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    NSLog(@":Device Unique Identifier: %@ | %@\nSystem Version: %ld", [[self class] deviceUniqueID], [[self class] deviceDetailDescription], (long)[[self class] systemVersion]);
-    
+{    
     ///<    初始化状态栏：渐变
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    //  Crashlytics
-    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);   //  REMARK：must before init crashlytics
-    [Fabric with:@[[Crashlytics class]]];
-    
-    NSString* uuid = [NativeAppDelegate deviceUniqueID];
-    id device_info = [NativeAppDelegate deviceInfo];
-    CLS_LOG(@"%@",uuid);
-    CLS_LOG(@"UserDeviceInfo: %@", device_info);
-    
-    [CrashlyticsKit setUserIdentifier:uuid];
-    
-    [Flurry startSession:@"WY5BMPMSZTXNCC2X986X" withSessionBuilder:[[[[[FlurrySessionBuilder new]
-                                                                        withLogLevel:FlurryLogLevelAll]
-                                                                       withCrashReporting:YES]
-                                                                      withSessionContinueSeconds:20]
-                                                                     withAppVersion:[[self class] appVersion]]];
+    //bugly
+    [self setupBugly];
+    //百度埋点
+    [self setBaiduMobStat];
     
     //  初始化石墨烯对象序列化类
     [T_Base registerAllType];
@@ -530,22 +503,6 @@ void uncaughtExceptionHandler(NSException *exception)
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
     }];
     
-    //  [统计]
-    id login_account_id = [[WalletManager sharedWalletManager] getWalletAccountName];
-    if (login_account_id && ![login_account_id isEqualToString:@""]){
-        [Flurry setUserID:login_account_id];
-    }
-    [OrgUtils logEvents:@"startSession" params:@{@"uuid":uuid, @"lang":self.currLanguage ? : @"", @"device_info":device_info}];
-    
-    //  LOG
-#ifndef DEBUG
-    if ([TempManager sharedTempManager].appFirstLaunch){
-        CLS_LOG(@"AppFirstLaunch YES");
-    }else{
-        CLS_LOG(@"AppFirstLaunch NO, first launch time: %@", @((uint32_t)[[AppCacheManager sharedAppCacheManager] getFirstRunTime]));
-    }
-#endif
-    
     //  初始化网络状态以及监听器
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onReachabilityChanged:)
@@ -561,6 +518,26 @@ void uncaughtExceptionHandler(NSException *exception)
     return YES;
 }
 
+#pragma mark - bugly
+- (void)setupBugly {
+    BuglyConfig * config = [[BuglyConfig alloc] init];
+    config.blockMonitorEnable = YES;
+    config.blockMonitorTimeout = 1.5;
+    config.channel = @"Appstore";
+    config.consolelogEnable = NO;
+    config.viewControllerTrackingEnable = NO;
+    [Bugly startWithAppId:BUGLY_APP_ID];
+    [Bugly setUserIdentifier:[NSString stringWithFormat:@"User: %@", [UIDevice currentDevice].name]];
+    [Bugly setUserValue:[NSProcessInfo processInfo].processName forKey:@"Process"];
+}
+
+#pragma mark - 百度埋点
+- (void)setBaiduMobStat {
+    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
+    statTracker.channelId = @"Appstore";
+    [statTracker startWithAppId:BAIDUMOBSTAT_APP_ID];
+}
+
 ///<    一对：暂停和继续
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -568,7 +545,7 @@ void uncaughtExceptionHandler(NSException *exception)
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
-    NSLog(@"applicationWillResignActive");
+    DLog(@"applicationWillResignActive");
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -576,7 +553,7 @@ void uncaughtExceptionHandler(NSException *exception)
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
-    NSLog(@"applicationDidBecomeActive");
+    DLog(@"applicationDidBecomeActive");
 }
 
 ///<    一对：后台和前台o.o
@@ -586,7 +563,7 @@ void uncaughtExceptionHandler(NSException *exception)
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
-    NSLog(@"applicationDidEnterBackground");
+    DLog(@"applicationDidEnterBackground");
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -595,7 +572,7 @@ void uncaughtExceptionHandler(NSException *exception)
      Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
      */
     [application setApplicationIconBadgeNumber:0];
-    NSLog(@"applicationWillEnterForeground");
+    DLog(@"applicationWillEnterForeground");
 }
 
 ///<    不搭理你o.o

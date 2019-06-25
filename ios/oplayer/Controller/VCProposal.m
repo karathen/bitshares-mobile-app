@@ -949,16 +949,12 @@
             }else{
                 [OrgUtils makeToast:NSLocalizedString(@"kProposalSubmitTxTipsAddApprovalOK", @"添加授权成功。")];
             }
-            //  [统计]
-            [OrgUtils logEvents:@"txProposalUpdateFullOK" params:@{@"account":fee_paying_account}];
             //  刷新
             [self queryAllProposals:nil];
             return nil;
         })] catch:(^id(id error) {
             [self hideBlockView];
             [OrgUtils showGrapheneError:error];
-            //  [统计]
-            [OrgUtils logEvents:@"txProposalUpdateFailed" params:@{@"account":fee_paying_account}];
             return nil;
         })];
     }

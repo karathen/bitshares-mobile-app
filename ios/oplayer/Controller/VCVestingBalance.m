@@ -435,16 +435,12 @@
          [[[[BitsharesClientManager sharedBitsharesClientManager] vestingBalanceWithdraw:op] then:(^id(id data) {
              [_owner hideBlockView];
              [OrgUtils makeToast:[NSString stringWithFormat:NSLocalizedString(@"kVestingTipTxVestingBalanceWithdrawFullOK", @"待解冻金额 %@ 提取成功。"), balance_id]];
-             //  [统计]
-             [OrgUtils logEvents:@"txVestingBalanceWithdrawFullOK" params:@{@"account":uid}];
              //  刷新
              [self queryVestingBalance];
              return nil;
          })] catch:(^id(id error) {
              [_owner hideBlockView];
              [OrgUtils showGrapheneError:error];
-             //  [统计]
-             [OrgUtils logEvents:@"txVestingBalanceWithdrawFailed" params:@{@"account":uid}];
              return nil;
          })];
      }];

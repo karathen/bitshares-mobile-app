@@ -106,8 +106,6 @@
         [NSDictionary dictionaryWithObjectsAndKeys:self.currThemeCode, // Parameter Value
          @"theme", // Parameter Name
          nil];
-        //  [统计]
-        [OrgUtils logEvents:@"selectTheme" params:params];
         [[SettingManager sharedSettingManager] setUseConfig:kSettingKey_ThemeInfo obj:themeInfo];
         [[ThemeManager sharedThemeManager] switchTheme:self.currThemeCode reload:YES];
         [tableView reloadData];

@@ -78,9 +78,6 @@
         NSFileManager* fileManager = [NSFileManager defaultManager];
         [fileManager createDirectoryAtPath:_importDir withIntermediateDirectories:YES attributes:nil error:&error];
         if (error){
-            //  [统计]
-            [OrgUtils logEvents:@"system_error"
-                           params:@{@"message":[NSString stringWithFormat:@"createDirectoryAtPath %@", error]}];
             NSLog(@"createDirectoryAtPath error:%@", error);
             tip_message = NSLocalizedString(@"kLoginTipsImportInitError", @"发生未知错误，不能导入钱包，请稍后再试。");
         }else{
@@ -387,8 +384,6 @@
             id unlockInfos = [walletMgr unLock:wallet_password];
             assert(unlockInfos &&
                    [[unlockInfos objectForKey:@"unlockSuccess"] boolValue]);
-            //  [统计]
-            [OrgUtils logEvents:@"loginEvent" params:@{@"mode":@(kwmFullWalletMode), @"desc":@"wallet"}];
             
             //  返回之前先关闭webserver
             [self stopWebServer];

@@ -88,8 +88,6 @@
     id estimateAssetSymbol = [[_dataArray objectAtIndex:indexPath.row] objectForKey:@"symbol"];
     if (![estimateAssetSymbol isEqualToString:_currEstimateAssetSymbol]){
         _currEstimateAssetSymbol = [estimateAssetSymbol copy];
-        //  [统计]
-        [OrgUtils logEvents:@"selectSstimateAsset" params:@{@"symbol":_currEstimateAssetSymbol}];
         [[SettingManager sharedSettingManager] setUseConfig:kSettingKey_EstimateAssetSymbol obj:_currEstimateAssetSymbol];
         [tableView reloadData];
     }

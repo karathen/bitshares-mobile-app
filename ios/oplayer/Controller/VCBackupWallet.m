@@ -71,9 +71,7 @@
         
         //  到处钱包文件
         if (![[AppCacheManager sharedAppCacheManager] autoBackupWalletToWebdir:YES]){
-            //  [统计]
-            [OrgUtils logEvents:@"system_error" params:@{@"message":@"backupwallet to webdir failed."}];
-            NSLog(@"backup wallet to webdir failed...");
+            DLog(@"backup wallet to webdir failed...");
         }
         
         //  创建目录
@@ -81,10 +79,7 @@
         NSFileManager* fileManager = [NSFileManager defaultManager];
         [fileManager createDirectoryAtPath:_importDir withIntermediateDirectories:YES attributes:nil error:&error];
         if (error){
-            //  [统计]
-            [OrgUtils logEvents:@"system_error"
-                           params:@{@"message":[NSString stringWithFormat:@"createDirectoryAtPath %@", error]}];
-            NSLog(@"createDirectoryAtPath error:%@", error);
+            DLog(@"createDirectoryAtPath error:%@", error);
             tip_message = NSLocalizedString(@"kBackupInitUnknownError", @"发生未知错误，不能备份钱包，请稍后再试。");
         }else{
             _webServer = [[GCDWebUploader alloc] initWithUploadDirectory:_importDir];

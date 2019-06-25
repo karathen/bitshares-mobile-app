@@ -12,8 +12,6 @@
 #import "WalletManager.h"
 #import "OrgUtils.h"
 
-#import <Crashlytics/Crashlytics.h>
-
 @interface VCUnlockAccount ()
 {
     UnlockCallback          _callback;

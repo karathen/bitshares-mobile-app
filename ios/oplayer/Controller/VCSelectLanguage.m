@@ -67,8 +67,6 @@
     id langInfo = [[LangManager sharedLangManager].dataArray objectAtIndex:indexPath.row];
     id langCode = [langInfo objectForKey:@"langCode"];
     if (![[langInfo objectForKey:@"langCode"] isEqualToString:[LangManager sharedLangManager].currLangCode]){
-        //  [统计]
-        [OrgUtils logEvents:@"selectLanguage" params:@{@"langCode":langCode}];
         [[LangManager sharedLangManager] saveLanguage:langCode];
     }
     else

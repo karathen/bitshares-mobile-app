@@ -12,8 +12,7 @@
 #import "TempManager.h"
 #import "AppCommon.h"
 #import "OrgUtils.h"
-
-#import <Crashlytics/Crashlytics.h>
+#import "TradingPair.h"
 
 @implementation ScheduleTickerUpdate
 @synthesize quote, base, pair;
@@ -68,9 +67,6 @@ static ScheduleManager *_sharedScheduleManager = nil;
         ScheduleSubMarket* s = _sub_market_infos[pair];
         //  重新订阅
         [self _sub_market_notify_core:s];
-        //  [统计]
-        [OrgUtils logEvents:@"event_resubscribe_to_market"
-                       params:@{@"base":s.tradingPair.baseAsset[@"symbol"], @"quote":s.tradingPair.quoteAsset[@"symbol"]}];
     }
 }
 
@@ -476,9 +472,6 @@ static ScheduleManager *_sharedScheduleManager = nil;
         //  TODO:fowallet !!! 在重连之后需要重新 subscribe_to_market 。！！！重要
         s.querying = NO;
         s.subscribed = NO;
-        //  [统计]
-        [OrgUtils logEvents:@"event_subscribe_to_market_disconnect"
-                       params:@{@"base":s.tradingPair.baseAsset[@"symbol"], @"quote":s.tradingPair.quoteAsset[@"symbol"]}];
     }
 }
 

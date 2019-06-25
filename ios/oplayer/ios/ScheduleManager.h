@@ -7,7 +7,6 @@
 //  定时任务调度管理器
 
 #import <Foundation/Foundation.h>
-#import "TradingPair.h"
 #import "GrapheneWebSocket.h"
 
 //  Ticker更新时间间隔 最大值和最小值 单位：毫秒
@@ -20,6 +19,7 @@
 //  Ticker更新数据没变化时，每次递增间隔。
 #define kScheduleTickerIntervalStep  1000.0f
 
+@class TradingPair;
 /**
  *  Ticker 任务数据定义
  */

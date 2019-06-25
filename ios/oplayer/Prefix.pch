@@ -7,15 +7,12 @@
 	#import <UIKit/UIKit.h>
 #endif
 
-//  release 模式去掉LOG
-#ifndef DEBUG
-    #define NSLog(...);
-#endif
 
-//  debug 模式去掉CLSLog
+//DEBUG 模式下打印
 #ifdef DEBUG
-#define CLSNSLog(...);
-#define CLSLog(...);
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#   define DLog(...)
 #endif
 
 //  运行模式
@@ -29,5 +26,11 @@
 #else
 #define GRAPHENE_BITSHARES_TESTNET  1
 #endif
+
+//bugly
+#define BUGLY_APP_ID @"57938bc549"
+
+//百度埋点
+#define BAIDUMOBSTAT_APP_ID @"66e9d4aa1c"
 
 #import "CompileTimeMacro.h"

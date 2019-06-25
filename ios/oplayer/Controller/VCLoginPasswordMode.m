@@ -21,7 +21,6 @@
 
 #import "VCBtsaiWebView.h"
 
-#import <Crashlytics/Crashlytics.h>
 
 //  ［账号+密码] + [登录]
 enum
@@ -329,8 +328,6 @@ enum
                 assert(unlockInfos &&
                        [[unlockInfos objectForKey:@"unlockSuccess"] boolValue] &&
                        [[unlockInfos objectForKey:@"haveActivePermission"] boolValue]);
-                //  [统计]
-                [OrgUtils logEvents:@"loginEvent" params:@{@"mode":@(kwmPasswordWithWallet), @"desc":@"password+wallet"}];
             }else{
                 //  普通帐号模式
                 [[AppCacheManager sharedAppCacheManager] setWalletInfo:kwmPasswordOnlyMode
@@ -342,8 +339,6 @@ enum
                 assert(unlockInfos &&
                        [[unlockInfos objectForKey:@"unlockSuccess"] boolValue] &&
                        [[unlockInfos objectForKey:@"haveActivePermission"] boolValue]);
-                //  [统计]
-                [OrgUtils logEvents:@"loginEvent" params:@{@"mode":@(kwmPasswordOnlyMode), @"desc":@"password"}];
             }
             
             //  返回
@@ -569,8 +564,6 @@ enum
     switch (button.tag) {
         case kVcSubUserTradingPassword:
         {
-            //  [统计]
-            [OrgUtils logEvents:@"qa_tip_click" params:@{@"qa":@"qa_trading_password"}];
             VCBtsaiWebView* vc = [[VCBtsaiWebView alloc] initWithUrl:@"http://btspp.io/qam.html#qa_trading_password"];
             vc.title = NSLocalizedString(@"kVcTitleWhatIsTradePassowrd", @"什么是交易密码？");
             [_owner pushViewController:vc vctitle:nil backtitle:kVcDefaultBackTitleName];

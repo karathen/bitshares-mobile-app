@@ -756,22 +756,16 @@ enum
                  [self hideBlockView];
                  [self refreshUI:full_data];
                  [OrgUtils makeToast:NSLocalizedString(@"kVcHtlcSubmitTipsFullOK", @"创建HTLC成功，可在我的资产界面查看HTLC详细信息。")];
-                 //  [统计]
-                 [OrgUtils logEvents:@"txHtlcCreateFullOK" params:@{@"from":opaccount_id, @"htlc_id":new_htlc_id ?: @""}];
                  return nil;
              })] catch:(^id(id error) {
                  [self hideBlockView];
                  [OrgUtils makeToast:NSLocalizedString(@"kVcHtlcSubmitTipsOK", @"创建HTLC成功，但刷新界面失败，可在我的资产界面查看HTLC详细信息。")];
-                 //  [统计]
-                 [OrgUtils logEvents:@"txHtlcCreateOK" params:@{@"from":opaccount_id, @"htlc_id":new_htlc_id ?: @""}];
                  return nil;
              })];
              return nil;
          })] catch:(^id(id error) {
              [self hideBlockView];
              [OrgUtils showGrapheneError:error];
-             //  [统计]
-             [OrgUtils logEvents:@"txHtlcCreateFailed" params:@{@"from":opaccount_id}];
              return nil;
          })];
      }];

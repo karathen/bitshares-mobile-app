@@ -1584,9 +1584,6 @@ enum
                  }else{
                      [OrgUtils makeToast:[NSString stringWithFormat:NSLocalizedString(@"kVcTradeTipTxCreateFullOKWithID", @"下单成功，订单 #%@ 已成交。"), new_order_id]];
                  }
-                 //  [统计]
-                 [OrgUtils logEvents:@"txCreateLimitOrderFullOK"
-                                params:@{@"account":seller, @"isbuy":@(_isbuy), @"base":_base[@"symbol"], @"quote":_quote[@"symbol"]}];
                  return nil;
              })] catch:(^id(id error) {
                  //  刷新失败也添加到监控
@@ -1597,18 +1594,12 @@ enum
                  }
                  [_owner hideBlockView];
                  [OrgUtils makeToast:NSLocalizedString(@"kVcTradeTipTxCreateOK", @"下单成功，但刷新失败，请稍后再试。")];
-                 //  [统计]
-                 [OrgUtils logEvents:@"txCreateLimitOrderOK"
-                                params:@{@"account":seller, @"isbuy":@(_isbuy), @"base":_base[@"symbol"], @"quote":_quote[@"symbol"]}];
                  return nil;
              })];
              return nil;
          })] catch:(^id(id error) {
              [_owner hideBlockView];
              [OrgUtils showGrapheneError:error];
-             //  [统计]
-             [OrgUtils logEvents:@"txCreateLimitOrderFailed"
-                            params:@{@"account":seller, @"isbuy":@(_isbuy), @"base":_base[@"symbol"], @"quote":_quote[@"symbol"]}];
              return nil;
          })];
      }];
@@ -1669,22 +1660,16 @@ enum
                  //  刷新（调用owner的方法刷新、买/卖界面都需要刷新。）
                  [_owner onFullAccountInfoResponsed:full_data];
                  [OrgUtils makeToast:[NSString stringWithFormat:NSLocalizedString(@"kVcOrderTipTxCancelFullOK", @"订单 #%@ 已取消。"), order_id]];
-                 //  [统计]
-                 [OrgUtils logEvents:@"txCancelLimitOrderFullOK" params:@{@"account":account_id}];
                  return nil;
              })] catch:(^id(id error) {
                  [_owner hideBlockView];
                  [OrgUtils makeToast:[NSString stringWithFormat:NSLocalizedString(@"kVcOrderTipTxCancelOK", @"订单 #%@ 已取消，但刷新界面失败，请稍后再试。"), order_id]];
-                 //  [统计]
-                 [OrgUtils logEvents:@"txCancelLimitOrderOK" params:@{@"account":account_id}];
                  return nil;
              })];
              return nil;
          })] catch:(^id(id error) {
              [_owner hideBlockView];
              [OrgUtils showGrapheneError:error];
-             //  [统计]
-             [OrgUtils logEvents:@"txCancelLimitOrderFailed" params:@{@"account":account_id}];
              return nil;
          })];
      }];

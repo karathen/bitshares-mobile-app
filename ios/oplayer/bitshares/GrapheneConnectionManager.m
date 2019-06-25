@@ -14,7 +14,6 @@
 #import "OrgUtils.h"
 #import "SettingManager.h"
 
-#import <Crashlytics/Crashlytics.h>
 
 static GrapheneConnectionManager *_sharedGrapheneConnectionManager = nil;
 
@@ -164,7 +163,7 @@ static GrapheneConnectionManager *_sharedGrapheneConnectionManager = nil;
     }
     //  全部都未连接，则返回第一个，会自动重连。
     _last_connection = [_connection_list firstObject];
-    CLS_LOG(@"any_connection: closed: db_api: %@", @([_last_connection.api_db isInited]));
+    DLog(@"any_connection: closed: db_api: %@", @([_last_connection.api_db isInited]));
     return _last_connection;
 }
 

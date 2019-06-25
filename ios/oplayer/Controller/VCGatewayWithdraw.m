@@ -524,22 +524,16 @@ enum
             [self hideBlockView];
             [self refreshUI:full_data];
             [OrgUtils makeToast:NSLocalizedString(@"kVcDWSubmitTxFullOK", @"申请提币成功。")];
-            //  [统计]
-            [OrgUtils logEvents:@"txGatewayWithdrawFullOK" params:@{@"account":account_id, @"asset":_asset[@"symbol"]}];
             return nil;
         })] catch:(^id(id error) {
             [self hideBlockView];
             [OrgUtils makeToast:NSLocalizedString(@"kVcDWSubmitTxOK", @"申请提币成功，但刷新界面数据失败，请稍后再试。")];
-            //  [统计]
-            [OrgUtils logEvents:@"txGatewayWithdrawOK" params:@{@"account":account_id, @"asset":_asset[@"symbol"]}];
             return nil;
         })];
         return nil;
     })] catch:(^id(id error) {
         [self hideBlockView];
         [OrgUtils showGrapheneError:error];
-        //  [统计]
-        [OrgUtils logEvents:@"txGatewayWithdrawFailed" params:@{@"asset":_asset[@"symbol"]}];
         return nil;
     })];
 }

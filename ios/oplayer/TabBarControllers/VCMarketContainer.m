@@ -144,7 +144,7 @@
 //        //  不检测更新的时候判断代理：如果代理变化了则强制调用 Init。
 //        BOOL useHttpProxy = [[SettingManager sharedSettingManager] useHttpProxy];
 //        if (useHttpProxy != [TempManager sharedTempManager].lastUseHttpProxy){
-//            CLS_LOG(@"back to foreground: call init when httpproxy flag changed. new value: %d", (int)useHttpProxy);
+//            DLog(@"back to foreground: call init when httpproxy flag changed. new value: %d", (int)useHttpProxy);
 //            //  TODO:fowallet proxy changed...
 //        }
 //    }
@@ -158,9 +158,7 @@
 //  事件：将要进入后台
 - (void)onUIApplicationWillResignActiveNotification
 {
-    CLS_LOG(@"will enter background");
-    //  [统计]
-    [OrgUtils logEvents:@"enterBackground" params:@{}];
+    DLog(@"will enter background");
     //  处理逻辑
     [[AppCacheManager sharedAppCacheManager] saveToFile];
     //  记录即将进入后台的时间
@@ -172,15 +170,13 @@
 //  事件：已经进入后台
 - (void)onUIApplicationDidEnterBackgroundNotification
 {
-    CLS_LOG(@"did enter background");
+    DLog(@"did enter background");
 }
 
 //  事件：将要进入前台
 - (void)onUIApplicationWillEnterForegroundNotification
 {
-    CLS_LOG(@"will enter foreground");
-    //  [统计]
-    [OrgUtils logEvents:@"enterForeground" params:@{}];
+    DLog(@"will enter foreground");
 }
 
 - (void)onAddMarketInfos
@@ -263,7 +259,6 @@
                                                     otherButtons:@[NSLocalizedString(@"kAppBtnReInit", @"重试")]
                                                       completion:^(NSInteger buttonIndex)
      {
-         [OrgUtils logEvents:@"appReInitNetwork" params:@{}];
          [self startInitGrapheneNetwork];
      }];
 }
@@ -308,20 +303,18 @@
                 _grapheneInitDone = YES;
                 //  添加ticker更新任务
                 [[ScheduleManager sharedScheduleManager] autoRefreshTickerScheduleByMergedMarketInfos];
-                //  初始化网络成功
-                [OrgUtils logEvents:@"appInitNetworkDone" params:@{}];
                 return nil;
             })];
         })] catch:(^id(id error) {
             [self hideBlockView];
-            CLS_LOG(@"InitNetworkError02: %@", error);
+            DLog(@"InitNetworkError02: %@", error);
             [self onFirstInitFailed];
             return nil;
         })];
         return nil;
     })] catch:(^id(id error) {
         [self hideBlockView];
-        CLS_LOG(@"InitNetworkError01: %@", error);
+        DLog(@"InitNetworkError01: %@", error);
         [self onFirstInitFailed];
         return nil;
     })];
@@ -427,10 +420,10 @@
 - (void)checkUpdate:(BOOL)back_to_foreground
 {
     if (back_to_foreground){
-        CLS_LOG(@"back to foreground checkUpdate");
+        DLog(@"back to foreground checkUpdate");
         //  从后台回到前台检测更新在首次初始化尚未初始化完毕的情况下则直接返回。
         if (!_grapheneInitDone){
-            CLS_LOG(@"checkUpdate cancel, first time initing...");
+            DLog(@"checkUpdate cancel, first time initing...");
             return;
         }
     }
@@ -485,15 +478,15 @@
  */
 - (void)onLoadVersionJsonFinish:(NSDictionary*)pConfig back_to_foreground:(BOOL)back_to_foreground updateversion:(BOOL)updateversionjson
 {
-    //  服务器 or 本地加载都异常了 REMARK：这种情况记录一个CLS_LOG后直接初始化（应该是被人debug修改错乱了。）
+    //  服务器 or 本地加载都异常了 REMARK：这种情况记录一个DLog后直接初始化（应该是被人debug修改错乱了。）
     if (!pConfig)
     {
-        CLS_LOG(@"onLoadVersionJsonFinish: load version.json error");
+        DLog(@"onLoadVersionJsonFinish: load version.json error");
         [self startInitGrapheneNetwork];
         return;
     }
 
-    CLS_LOG(@"onLoadVersionJsonFinish: asyncFetchJson done, blockview: %@", @([[MBProgressHUDSingleton sharedMBProgressHUDSingleton] is_showing]));
+    DLog(@"onLoadVersionJsonFinish: asyncFetchJson done, blockview: %@", @([[MBProgressHUDSingleton sharedMBProgressHUDSingleton] is_showing]));
 
     //  需要更新时 version.json 写入文件，如果直接从本地读取出来的情况则不用重新写入。
     if (updateversionjson){
