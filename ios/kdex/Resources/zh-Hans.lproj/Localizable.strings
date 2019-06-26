@@ -807,13 +807,9 @@
 "kLangKeyEn" = "English / 英文";
 "kLangKeyJa" = "日本語 / 日文";
 "skip" = "跳过";
-"kAppName" = "比特股";
+"kAppName" = "KDEX";
 "kAccount" = "账号";
-"kAboutMainDesc" ="\n比特股移动端钱包是基于石墨烯技术，从产品体验出发，采用原生技术开发的一款可媲美一流中心化交易所的去中心化交易所（DEX）产品。\n\n联系我们\n微信：bts-pp\n邮箱：contact@btsplusplus.com\n电报：https://t.me/btsplusplus\n官网：http://btspp.io\n";
-"kAboutChannelAppStore" = "(商店版 & 渠道 %@)";
-"kAboutChannelWebsite" = "(官网版 & 渠道 %@)";
-"kAboutDebugVersion" = "(调试版)";
-"kAboutTestnet" = "(测试网络)";
+"kAboutMainDesc" ="\nKDEX是基于比特股移动端钱包（基于石墨烯技术），从产品体验出发，采用原生技术开发的一款可媲美一流中心化交易所的去中心化交易所（DEX）产品。";
 "kSettingEx" = "设置";
 "setting_theme" = "主题风格";
 "kThemeNameBlue" = "静谧蓝";

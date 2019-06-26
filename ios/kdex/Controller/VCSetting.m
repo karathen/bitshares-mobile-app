@@ -20,7 +20,7 @@ enum
 {
     kSetting_language = 0,      //  多语言
     kSetting_estimate_unit,     //  记账单位
-    kSetting_theme,             //  主题风格
+//    kSetting_theme,             //  主题风格
     
     kSetting_Max
 };
@@ -53,7 +53,7 @@ enum
     _dataArray = [[NSArray alloc] initWithObjects:
                   @"setting_language",  //  语言
                   @"setting_currency",  //  计价方式
-                  @"setting_theme",     //  主题风格
+//                  @"setting_theme",     //  主题风格
                   nil];
     
     _mainTableView = [[UITableView alloc] initWithFrame:[self rectWithoutNavi] style:UITableViewStyleGrouped];
@@ -153,15 +153,15 @@ enum
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         }
             break;
-        case kSetting_theme:
-        {
-            NSString* themeCode = [[[SettingManager sharedSettingManager] getThemeInfo] objectForKey:@"themeCode"];
-            cell.detailTextLabel.text = [[ThemeManager sharedThemeManager] getThemeNameFromThemeCode:themeCode];
-            cell.detailTextLabel.textColor = [ThemeManager sharedThemeManager].textColorNormal;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        }
-            break;
+//        case kSetting_theme:
+//        {
+//            NSString* themeCode = [[[SettingManager sharedSettingManager] getThemeInfo] objectForKey:@"themeCode"];
+//            cell.detailTextLabel.text = [[ThemeManager sharedThemeManager] getThemeNameFromThemeCode:themeCode];
+//            cell.detailTextLabel.textColor = [ThemeManager sharedThemeManager].textColorNormal;
+//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+//        }
+//            break;
         default:
             break;
     }
@@ -195,13 +195,13 @@ enum
                 [self pushViewController:vc vctitle:nil backtitle:kVcDefaultBackTitleName];
             }
                 break;
-            case kSetting_theme:
-            {
-                VCSelectTheme* vc = [[VCSelectTheme alloc] init];
-                vc.title = NSLocalizedString(@"kVcTitleTheme", @"主题风格");
-                [self pushViewController:vc vctitle:nil backtitle:kVcDefaultBackTitleName];
-            }
-                break;
+//            case kSetting_theme:
+//            {
+//                VCSelectTheme* vc = [[VCSelectTheme alloc] init];
+//                vc.title = NSLocalizedString(@"kVcTitleTheme", @"主题风格");
+//                [self pushViewController:vc vctitle:nil backtitle:kVcDefaultBackTitleName];
+//            }
+//                break;
             default:
                 break;
         }
