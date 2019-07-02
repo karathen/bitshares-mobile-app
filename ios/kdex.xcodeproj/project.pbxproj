@@ -78,6 +78,7 @@
 		3FF3550621FECDF4008EF213 /* LangManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF3550421FECDF4008EF213 /* LangManager.m */; };
 		3FF3550A21FED340008EF213 /* VCSelectLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF3550921FED340008EF213 /* VCSelectLanguage.m */; };
 		430D23D817D86F4900D85816 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430D23D717D86F4900D85816 /* ImageIO.framework */; };
+		9570361622C9ABE700C7A767 /* KarathenDEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 9570361522C9ABE700C7A767 /* KarathenDEX.m */; };
 		95C2DA4222C1F4A000568E5D /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C2DA4122C1F4A000568E5D /* Bugly.framework */; };
 		95C2DA4622C1FCF100568E5D /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C2DA4522C1FCF100568E5D /* libBaiduMobStat.a */; };
 		95C2DA4822C1FD6800568E5D /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C2DA4722C1FD6800568E5D /* libz.1.2.5.tbd */; };
@@ -677,6 +678,8 @@
 		3FF3550821FED340008EF213 /* VCSelectLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCSelectLanguage.h; path = Controller/VCSelectLanguage.h; sourceTree = "<group>"; };
 		3FF3550921FED340008EF213 /* VCSelectLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCSelectLanguage.m; path = Controller/VCSelectLanguage.m; sourceTree = "<group>"; };
 		430D23D717D86F4900D85816 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		9570361422C9ABE700C7A767 /* KarathenDEX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KarathenDEX.h; sourceTree = "<group>"; };
+		9570361522C9ABE700C7A767 /* KarathenDEX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KarathenDEX.m; sourceTree = "<group>"; };
 		95C2DA4122C1F4A000568E5D /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		95C2DA4422C1FCF000568E5D /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
 		95C2DA4522C1FCF100568E5D /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
@@ -1939,6 +1942,8 @@
 				3F6C35B021EC864F008E2903 /* RuDEX.m */,
 				3F6C35AC21EC83AA008E2903 /* GatewayBase.h */,
 				3F6C35AB21EC83AA008E2903 /* GatewayBase.m */,
+				9570361422C9ABE700C7A767 /* KarathenDEX.h */,
+				9570361522C9ABE700C7A767 /* KarathenDEX.m */,
 			);
 			name = Gateway;
 			sourceTree = "<group>";
@@ -3103,6 +3108,7 @@
 				F5BF579D1E2F78C800DEDE38 /* UIImage+ImageCompress.m in Sources */,
 				95C2DBB022C22FD200568E5D /* WalletManager.m in Sources */,
 				95C2DBED22C22FD200568E5D /* Threads.c in Sources */,
+				9570361622C9ABE700C7A767 /* KarathenDEX.m in Sources */,
 				B741A75120D9DCEB000FBC00 /* VCCallOrderRanking.m in Sources */,
 				F51D13FA1C59C45800FBB748 /* AWActionSheet.m in Sources */,
 				B77EBBEF213A4416009AC776 /* VCBackupWallet.m in Sources */,

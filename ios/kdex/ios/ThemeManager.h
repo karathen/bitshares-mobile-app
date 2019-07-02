@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#define kAppDefaultThemeCode    @"blue"
-#define kAppDefaultThemeName    @"暗黑蓝"  //  TODO:多语言
+#define kAppDefaultThemeCode    @"white"
+#define kAppDefaultThemeName    @"珍珠白"  //  TODO:多语言
 
 @interface ThemeManager : NSObject
 

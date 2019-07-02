@@ -19,6 +19,7 @@
 #import "Gateway/RuDEX.h"
 #import "Gateway/OpenLedger.h"
 #import "GatewayAssetItemData.h"
+#import "KarathenDEX.h"
 
 enum
 {
@@ -215,20 +216,20 @@ enum
     
     //  TODO:1.6 动态加载配置数据
     _gatewayArray = @[
-                      @{
-                          //    API reference: https://github.com/bitshares/bitshares-ui/files/3068123/OL-gateways-api.pdf
-                          @"name":@"OpenLedger",
-                          @"api":[[OpenLedger alloc] initWithApiConfig:@{
-                                                                         @"base":@"https://gateway.openledger.io",
-                                                                         @"assets":@"/assets",
-                                                                         @"exchanges":@"/exchanges",
-                                                                         @"request_deposit_address":@"/exchanges/%@/transfer/source/prototype",
-                                                                         @"validate":@"/exchanges/%@/transfer/destination",
-                                                                         }],
-                          @"helps":@[
-                                  @{@"title":NSLocalizedString(@"kVcDWHelpTitleSupport", @"帮助"), @"value":@"https://openledger.freshdesk.com", @"url":@YES},
-                                  ],
-                          },
+//                      @{
+//                          //    API reference: https://github.com/bitshares/bitshares-ui/files/3068123/OL-gateways-api.pdf
+//                          @"name":@"OpenLedger",
+//                          @"api":[[OpenLedger alloc] initWithApiConfig:@{
+//                                                                         @"base":@"https://gateway.openledger.io",
+//                                                                         @"assets":@"/assets",
+//                                                                         @"exchanges":@"/exchanges",
+//                                                                         @"request_deposit_address":@"/exchanges/%@/transfer/source/prototype",
+//                                                                         @"validate":@"/exchanges/%@/transfer/destination",
+//                                                                         }],
+//                          @"helps":@[
+//                                  @{@"title":NSLocalizedString(@"kVcDWHelpTitleSupport", @"帮助"), @"value":@"https://openledger.freshdesk.com", @"url":@YES},
+//                                  ],
+//                          },
                       @{
                           @"name":@"GDEX",
                           @"api":[[GatewayBase alloc] initWithApiConfig:@{
@@ -266,6 +267,15 @@ enum
                                     @"value":@"https://t.me/BitSharesDEX_RU", @"url":@YES},
                                   ],
                           },
+                      @{
+                          @"name":@"Karathen",
+                          @"api":[[KarathenDEX alloc] initWithApiConfig:@{
+                                                                    @"base":@"https://dex.karathen.com/api/v1",
+                                                                    @"coin_list":@"/coins",
+                                                                    @"request_deposit_address":@"/simple-api/initiate-trade",
+                                                                    @"check_address":@"/check-address",
+                                                                    }],
+                          }
                       ];
     
     assert([_gatewayArray count] > 0);

@@ -304,46 +304,42 @@ static ThemeManager *_sharedThemeManager = nil;
 - (NSDictionary*)genDefaultThemeColors
 {
     NSDictionary *defaultTheme = @{
-                                   @"themeCode": @"dark",
-                                   @"themeName": @"商务黑",
+                                   @"themeCode": @"white",
+                                   @"themeName": @"珍珠白",
+                                   @"themeNameLangKey": @"kThemeNameWhite",
+                                   @"themeStatusBarWhite": @"0",
                                    @"colors":
                                        @{
-//                                           @"appBackColor"            : @"1c1d1f",//  高端黑
-//                                           @"appBackColor"            : @"131e32",  //  暗黑蓝
-                                           @"appBackColor"            : @"131f30",  //  暗黑蓝
-                                           @"contentBackColor"        : @"333333",
-                                           @"bottomLineColor"         : @"1a273a",  //  TODO:fowallet color 颜色是否太深了
-//                                           @"bottomLineColor"         : @"ffffff",  //  test color
-                                           @"buyColor"                : @"03c087",
-                                           @"sellColor"               : @"e76d42",
-                                           @"zeroColor"               : @"8c9fad",
-                                           @"callOrderColor"          : @"ffff00",
-                                           @"textColorPercent"        : @"ffffff",
-                                           @"textColorHighlight"      : @"5786d2",
-                                           @"textColorGray"           : @"3d526b",
-                                           @"textColorNormal"         : @"6d87a8",
-                                           @"textColorMain"           : @"ffffff",
-                                           @"ma5Color"                : @"f6dc93",
-                                           @"ma10Color"               : @"61d1c0",
-                                           @"ma30Color"               : @"cb92fe",
-                                           
-                                           @"navigationBarBackColor"  : @"131f30",  //  同 appBackColor
-                                           @"navigationBarTextColor"  : @"ffffff",  //  同 textColorMain
-//                                           @"tabBarColor"             : @"fe6c5a",
-                                           @"tabBarColor"             : @"172941",  //  火币蓝
-                                           @"blockButtonBackColor"    : @"607D8B",
-                                           @"blockButtonTextColor"    : @"ffffff",
-                                           @"mainButtonBackColor"     : @"e76d42",
-                                           @"mainButtonTextColor"     : @"ffffff",
-                                           @"frameButtonBorderColor"  : @"607D8B",
-                                           @"frameButtonTextColor"    : @"607D8B",
-//                                           @"tintColor"               : @"fe6c5a",
-                                           @"tintColor"               : @"e76d42",  //  同 textColorHighlight
-                                           @"iconColor"               : @"fe6c5a",
-                                           @"textColor01"             : @"212121",
-                                           @"textColor02"             : @"727272",
-                                           @"noticeColor"             : @"fe6c5a",
-                                           @"ticketColor"             : @"8d9caa",
+                                           @"appBackColor": @"ffffff",
+                                           @"contentBackColor": @"333333",
+                                           @"bottomLineColor": @"e7ebee",
+                                           @"buyColor": @"03c087",
+                                           @"sellColor": @"e76d42",
+                                           @"zeroColor": @"8c9fad",
+                                           @"callOrderColor": @"ffff00",
+                                           @"textColorPercent": @"ffffff",
+                                           @"textColorHighlight": @"5786d2",
+                                           @"textColorGray": @"c5cfd5",
+                                           @"textColorNormal": @"8c9fad",
+                                           @"textColorMain": @"1f3f59",
+                                           @"ma5Color": @"f6dc93",
+                                           @"ma10Color": @"61d1c0",
+                                           @"ma30Color": @"cb92fe",
+                                           @"navigationBarBackColor": @"ffffff",
+                                           @"navigationBarTextColor": @"1f3f59",
+                                           @"tabBarColor": @"f2f2f2",
+                                           @"blockButtonBackColor": @"607D8B",
+                                           @"blockButtonTextColor": @"ffffff",
+                                           @"mainButtonBackColor": @"fe6c5a",
+                                           @"mainButtonTextColor": @"ffffff",
+                                           @"frameButtonBorderColor": @"607D8B",
+                                           @"frameButtonTextColor": @"607D8B",
+                                           @"tintColor": @"fe6c5a",
+                                           @"iconColor": @"fe6c5a",
+                                           @"textColor01": @"212121",
+                                           @"textColor02": @"727272",
+                                           @"noticeColor": @"fe6c5a",
+                                           @"ticketColor": @"8d9caa"
                                            }
                                    };
     return [self genThemeColors:defaultTheme];

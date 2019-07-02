@@ -72,7 +72,7 @@ enum
         _depositAssetItem = depositAssetItem;
         //  获取 memo
         _depositMemoData = [depositAddrItem objectForKey:@"inputMemo"];
-        if (!_depositMemoData || [_depositMemoData isKindOfClass:[NSNull class]]){
+        if (!_depositMemoData || [_depositMemoData isKindOfClass:[NSNull class]] || _depositMemoData.length == 0){
             _depositMemoData = nil;
         }
     }
