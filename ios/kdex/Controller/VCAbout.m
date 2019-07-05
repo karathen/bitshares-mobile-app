@@ -51,7 +51,7 @@
     appnamever.textColor = [ThemeManager sharedThemeManager].textColorGray;
     appnamever.textAlignment = NSTextAlignmentCenter;
     appnamever.font = [UIFont systemFontOfSize:13];
-    appnamever.text = [NSString stringWithFormat:@"%@ v%@", NSLocalizedString(@"kAppName", @"BTS++"), [NativeAppDelegate appShortVersion]];
+    appnamever.text = [NSString stringWithFormat:@"%@ v%@", NSLocalizedString(@"kAppName", @"KDEX"), [NativeAppDelegate appShortVersion]];
     [iconAreaView addSubview:appnamever];
     
     //  关于介绍的说明文档部分
@@ -68,9 +68,7 @@
     NSMutableArray* lines = [NSMutableArray array];
     
     //  介绍&主程序版本号
-    [lines addObject:NSLocalizedString(@"kAboutMainDesc", @"\nKDEX是基于比特股移动端钱包（基于石墨烯技术），从产品体验出发，采用原生技术开发的一款可媲美一流中心化交易所的去中心化交易所（DEX）产品。")];
-    [lines addObject:[NSString stringWithFormat:@"%@ v%@", NSLocalizedString(@"kAppName", @"BTS++"), [NativeAppDelegate appVersion]]];
-    
+    [lines addObject:NSLocalizedString(@"kAboutMainDesc", @"\nKDEX是基于比特股移动端钱包（基于石墨烯技术），从产品体验出发，采用原生技术开发的一款可媲美一流中心化交易所的去中心化交易所（DEX）产品。")];    
     tv_main.text = [lines componentsJoinedByString:@"\n"];
 }
 

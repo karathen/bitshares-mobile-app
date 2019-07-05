@@ -138,7 +138,7 @@ NSString* gSmallDataDecode(NSString* str, NSString* key)
                     break;
                 }
                 case AVAuthorizationStatusDenied: {
-                    reject(@"请去前往【设置>隐私>相机>BTS++】打开访问开关。");
+                    reject(@"请去前往【设置>隐私>相机>KDEX】打开访问开关。");
                     break;
                 }
                 case AVAuthorizationStatusRestricted: {

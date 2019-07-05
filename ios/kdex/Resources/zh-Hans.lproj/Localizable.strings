@@ -220,8 +220,8 @@
 "kLoginCellWalletPassword" = "钱包密码";
 "kLoginCellActivePrivateKey" = "资金私钥 ";
 "kLoginCellConfirmPassword" = "确认密码";
-"kLoginRegTipsAccountMode" = "提示：账号密码对应格式要求可以点击问号查看。\n注意：比特股是去中心化区块链应用密码一旦丢失或遗忘将无法找回，请务必妥善保管。";
-"kLoginRegTipsWalletMode" = "提示：钱包密码对应格式要求可以点击问号查看。\n注意：比特股是去中心化区块链应用，钱包文件和密码一旦丢失或遗忘将无法找回，建议您注册后将钱包文件做好备份，并妥善保管。※ 推荐使用钱包模式。";
+"kLoginRegTipsAccountMode" = "提示：账号密码对应格式要求可以点击问号查看。\n注意：KDEX是去中心化区块链应用密码一旦丢失或遗忘将无法找回，请务必妥善保管。";
+"kLoginRegTipsWalletMode" = "提示：钱包密码对应格式要求可以点击问号查看。\n注意：KDEX是去中心化区块链应用，钱包文件和密码一旦丢失或遗忘将无法找回，建议您注册后将钱包文件做好备份，并妥善保管。※ 推荐使用钱包模式。";
 "kLoginFaucetTipsInvalidArguments" = "参数无效。";
 "kLoginFaucetTipsInvalidAccountFmt" = "账号格式无效。";
 "kLoginFaucetTipsAccountAlreadyExist" = "账号已经存在。";

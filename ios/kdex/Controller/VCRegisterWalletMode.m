@@ -144,7 +144,7 @@ enum
     [self.view addGestureRecognizer:pTap];
     
     //  UI - 提示信息
-    _cellTips = [[ViewTipsInfoCell alloc] initWithText:NSLocalizedString(@"kLoginRegTipsWalletMode", @"提示：钱包密码对应格式要求可以点击问号查看。\n注意：BTS++是去中心化区块链应用，钱包文件和密码一旦丢失或遗忘将无法找回，建议您注册后将钱包文件做好备份，并妥善保管。※ 推荐使用钱包模式。")];
+    _cellTips = [[ViewTipsInfoCell alloc] initWithText:NSLocalizedString(@"kLoginRegTipsWalletMode", @"提示：钱包密码对应格式要求可以点击问号查看。\n注意：KDEX是去中心化区块链应用，钱包文件和密码一旦丢失或遗忘将无法找回，建议您注册后将钱包文件做好备份，并妥善保管。※ 推荐使用钱包模式。")];
     _cellTips.hideBottomLine = YES;
     _cellTips.hideTopLine = YES;
     _cellTips.backgroundColor = [UIColor clearColor];

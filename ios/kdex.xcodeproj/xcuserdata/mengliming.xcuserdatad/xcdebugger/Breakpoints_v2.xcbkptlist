@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kdex/Controller/VCRegisterPasswordMode.m"
-            timestampString = "583152022.501181"
+            filePath = "kdex/Controller/VCGatewayWithdraw.m"
+            timestampString = "583745773.454924"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
-            landmarkName = "-process_register"
+            startingLineNumber = "433"
+            endingLineNumber = "433"
+            landmarkName = "-gotoWithdrawCore"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kdex/Controller/VCRegisterWalletMode.m"
-            timestampString = "583152022.501251"
+            filePath = "kdex/Controller/VCGatewayWithdraw.m"
+            timestampString = "583745773.455189"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
-            landmarkName = "-process_register"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
+            landmarkName = "-gotoWithdrawCore"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kdex/Controller/VCGatewayWithdraw.m"
+            timestampString = "583745773.455246"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
+            landmarkName = "-gotoWithdrawCore"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kdex/Controller/VCLoginPasswordMode.m"
+            timestampString = "583742700.705538"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "-loginBitshares_AccountMode"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -39,18 +39,19 @@
 
 - (NSArray*)getTitleStringArray
 {
-    return @[NSLocalizedString(@"kLoginPageModeWallet", @"钱包模式"),
-             NSLocalizedString(@"kLoginPageModePassword", @"帐号模式")];
+    return @[NSLocalizedString(@"kLoginPageModePassword", @"帐号模式"),
+             NSLocalizedString(@"kLoginPageModeWallet", @"钱包模式")];
 }
 
 - (NSArray*)getSubPageVCArray
 {
-    return @[[[VCRegisterWalletMode alloc] initWithOwner:self], [[VCRegisterPasswordMode alloc] initWithOwner:self]];
+    return @[[[VCRegisterPasswordMode alloc] initWithOwner:self],
+             [[VCRegisterWalletMode alloc] initWithOwner:self]];
 }
 
 - (void)onRBtnAgreementClicked
 {
-    VCBtsaiWebView* vc = [[VCBtsaiWebView alloc] initWithUrl:@"http://btspp.io/agreement.html"];
+    VCBtsaiWebView* vc = [[VCBtsaiWebView alloc] initWithUrl:@"http://appserver.zjrs.ltd/KDEX.html"];
     vc.title = NSLocalizedString(@"kVcTitleAgreement", @"用户协议和服务条款");
     [self pushViewController:vc vctitle:nil backtitle:kVcDefaultBackTitleName];
 }

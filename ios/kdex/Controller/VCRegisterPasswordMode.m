@@ -145,7 +145,7 @@ enum
     pTap.cancelsTouchesInView = NO; //  IOS 5.0系列导致按钮没响应
     [self.view addGestureRecognizer:pTap];
     
-    _cellTips = [[ViewTipsInfoCell alloc] initWithText:NSLocalizedString(@"kLoginRegTipsAccountMode", @"提示：账号密码对应格式要求可以点击问号查看。\n注意：BTS++是去中心化区块链应用密码一旦丢失或遗忘将无法找回，请务必妥善保管。")];
+    _cellTips = [[ViewTipsInfoCell alloc] initWithText:NSLocalizedString(@"kLoginRegTipsAccountMode", @"提示：账号密码对应格式要求可以点击问号查看。\n注意：KDEX是去中心化区块链应用密码一旦丢失或遗忘将无法找回，请务必妥善保管。")];
     _cellTips.hideBottomLine = YES;
     _cellTips.hideTopLine = YES;
     _cellTips.backgroundColor = [UIColor clearColor];

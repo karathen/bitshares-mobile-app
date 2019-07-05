@@ -268,7 +268,7 @@ enum
                                   ],
                           },
                       @{
-                          @"name":@"Karathen",
+                          @"name":@"KDEX",
                           @"api":[[KarathenDEX alloc] initWithApiConfig:@{
                                                                     @"base":@"https://dex.karathen.com/api/v1",
                                                                     @"coin_list":@"/coins",

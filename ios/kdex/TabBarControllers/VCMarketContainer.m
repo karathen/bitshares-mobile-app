@@ -543,7 +543,7 @@
 //        return;
 //    }
 //    
-//    [[UIAlertViewManager sharedUIAlertViewManager] showMessage:@"BTS++官方版本完全免费，无代理费，无手续费，无加速包。任何收费版本皆为山寨版本，遇到山寨版本请与我们联系。"
+//    [[UIAlertViewManager sharedUIAlertViewManager] showMessage:@"KDEX完全免费，无代理费，无手续费，无加速包。任何收费版本皆为山寨版本，遇到山寨版本请与我们联系。"
 //                                                     withTitle:NSLocalizedString(@"kWarmTips", @"温馨提示")
 //                                                    completion:^(NSInteger buttonIndex)
 //    {
